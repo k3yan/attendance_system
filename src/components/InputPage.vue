@@ -25,13 +25,47 @@
       type="button" @click="logInput">
       Confirm
     </button>
-    <p class="flex justify-center mt-6 font-sans text-sm antialiased font-light leading-normal text-inherit">
-      
-      <a href="#"
-        class="block ml-1 font-sans text-sm antialiased font-bold leading-normal text-white">
-        Recently Confirmed
-      </a>
-    </p>
+    <label class="text-white">
+      Recently Confirmed:
+    </label>
+    <div class="flex items-end">
+    <button 
+      @click="toggleFormVisibility" 
+      :class="{
+        'bg-blue-500 hover:bg-blue-600': !showForm,
+        'bg-gray-300 cursor-not-allowed': showForm
+      }"
+      class="px-4 py-2 rounded-md text-white focus:outline-none"
+      :disabled="showForm"
+    >
+      {{ showForm ? 'Close Form' : 'Open Form' }}
+    </button>
+    <!-- Form -->
+    <transition name="slide">
+      <div v-if="showForm" class=" inset-y-[10rem] right-[10rem] z-10 flex justify-center items-center bg-black bg-opacity-50">
+        <div class="bg-white shadow-md rounded px-8 py-6">
+          <!-- Your form content goes here -->
+          <form @submit.prevent="submitForm">
+            <div class="mb-4">
+              <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
+                Username
+              </label>
+              <input v-model="formData.username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
+            </div>
+            <!-- Add more form fields as needed -->
+            <div class="flex justify-end">
+              <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Submit
+              </button>
+              <button @click="hideForm" class="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </transition>
+   </div>
   </div>
 </div>
 </template>
@@ -40,13 +74,44 @@
 export default {
   data() {
     return {
-      inputValue: ''
+      inputValue: '',
+      showForm: false,
+      formData: {
+        username: '',
+        // Add more form fields as needed
+      }
     };
   },
   methods: {
     logInput() {
       console.log(this.inputValue);
+    },
+    toggleFormVisibility() {
+      this.showForm = !this.showForm;
+    },
+    hideForm() {
+      this.showForm = false;
+      this.resetFormData();
+    },
+    submitForm() {
+      // Handle form submission logic
+      console.log('Form submitted with data:', this.formData);
+      this.hideForm();
+    },
+    resetFormData() {
+      this.formData = {
+        username: '',
+        // Reset other form fields as needed
+      };
     }
-  }
+  },
 };
 </script>
+<style>
+.slide-enter-active, .slide-leave-active {
+  transition: transform 0.3s ease-in-out;
+}
+.slide-enter, .slide-leave-to {
+  transform: translateX(100%);
+}
+</style>
