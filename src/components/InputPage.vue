@@ -9,44 +9,33 @@
       </div>
     <div class="absolute flex flex-col text-gray-700 bg-gradient-to-bl from-yellow-100 to-red-800 shadow-md w-96 rounded-xl bg-clip-border mt-[19rem] ml-[40rem]">
   <div class="">
-    <div class="flex items-end">
-    <button 
-      @click="toggleFormVisibility" 
-      :class="{
-        'bg-blue-500 hover:bg-blue-600': !showForm,
-        'bg-gray-300 cursor-not-allowed': showForm
-      }"
-      class="px-2 py-2 rounded-md text-white focus:outline-none ml-[19.6rem] mt-2"
-      :disabled="showForm"
-    >
-      {{ showForm ? 'Close Recent' : 'Recent' }}
+    <div>
+    <button @click="showTable = !showTable" class="py-1 px-1 bg-red-400 rounded ml-[22rem] mt-2">
+      <img src="../assets/rightangle.png" alt="arrow" class="h-[1rem]" />
     </button>
-    <!-- Form -->
-    <transition name="slide">
-      <div v-if="showForm" class=" inset-y-[10rem] right-[10rem] z-10 flex justify-center items-center bg-black bg-opacity-50">
-        <div class="bg-white shadow-md rounded px-8 py-6">
-          <!-- Your form content goes here -->
-          <form @submit.prevent="submitForm">
-            <div class="mb-4">
-              <label class="block text-gray-700 text-sm font-bold mb-2" for="username">
-                Username
-              </label>
-              <input v-model="formData.username" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" id="username" type="text" placeholder="Username">
-            </div>
-            <!-- Add more form fields as needed -->
-            <div class="flex justify-end">
-              <button type="submit" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Submit
-              </button>
-              <button @click="hideForm" class="ml-2 bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                Cancel
-              </button>
-            </div>
-          </form>
+    
+    <div v-if="showTable" class="flex justify-end mt-2 transform transition-transform duration-500 ease-in-out translate-x-[20rem]">
+      <div class="absolute bg-gradient-to-bl from-yellow-100 to-red-800 rounded-lg w-[20rem] h-[20rem]">
+        <div class="flex justify-end mt-2 mr-2">
+          Recently Confirmed
         </div>
+      <div class="flex justify-center mt-2 px-1 py-auto">
+      <table class="border-collapse border-2 border-blue-500 absolute">
+        <thead class="">
+          <tr class="">
+            <th class="border border-gray-500 px-10">Student ID</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="border border-gray-500">Data 1</td>
+          </tr>
+        </tbody>
+      </table>
       </div>
-    </transition>
-   </div>
+      </div>
+    </div>
+  </div>
     <img class="h-[10rem] ml-[7rem] flex" src="../assets/librarylogo.png">
   </div>
   <div class="flex flex-col gap-4 p-6">
@@ -73,46 +62,19 @@
 
 <script>
 export default {
-  data() {
+data() {
     return {
+      showTable: false,
       inputValue: '',
-      showForm: false,
-      formData: {
-        username: '',
-        // Add more form fields as needed
-      }
-    };
+    }
   },
   methods: {
+    toggleTable() {
+      this.showTable = !this.showTable;
+    },
     logInput() {
       console.log(this.inputValue);
     },
-    toggleFormVisibility() {
-      this.showForm = !this.showForm;
-    },
-    hideForm() {
-      this.showForm = false;
-      this.resetFormData();
-    },
-    submitForm() {
-      // Handle form submission logic
-      console.log('Form submitted with data:', this.formData);
-      this.hideForm();
-    },
-    resetFormData() {
-      this.formData = {
-        username: '',
-        // Reset other form fields as needed
-      };
-    }
   },
 };
 </script>
-<style>
-.slide-enter-active, .slide-leave-active {
-  transition: transform 0.3s ease-in-out;
-}
-.slide-enter, .slide-leave-to {
-  transform: translateX(100%);
-}
-</style>
