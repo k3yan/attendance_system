@@ -1,11 +1,11 @@
 import {createRouter, createWebHistory } from 'vue-router';
-import Recent from '../view/Recent.vue'
+
 
 const routes = [
     {
-        path: '/recent',
-        name: 'recent',
-        component:Recent
+        path: '',
+        name: '',
+   
     },
 ]
 
