@@ -1,13 +1,12 @@
 <template>
-  <div class="w-100vw h-100vh">
-    <img src="../assets/bgbook.jpg" alt="bg-image" class="absolute w-full h-full"/>
-      <div class="absolute mt-4 ml-[2rem] flex justify-between gap-3 bg-cover">
-        <img src="../assets/eMyellow.png" alt="logo" class="flex h-[7rem] rounded-full" />
-        <div class="text-white mt-[2rem] text-5xl italic">
-        </div>
-      </div>
-    <!--1st Form-->
-    <div class="absolute flex flex-col text-gray-700 bg-gray-200 shadow-md w-[30rem] rounded-xl bg-clip-border mt-[19rem] ml-[30rem] h-[30rem]">
+  <div class="w-full h-[100vh]">
+    <!--Logo-->
+    <div class="flex absolute">
+      <img src="../assets/eMyellow.png" alt="system-logo" class="h-[10rem] mb-[20rem]"/>
+    </div>
+    <!--Form-->
+    <div class="flex justify-center absolute">
+      <div class="flex flex-col text-gray-700 bg-gray-200 shadow-md w-[30rem] rounded-xl bg-clip-border mt-[10rem] ml-[30rem] h-[30rem]">
     <div class="">
     <div>
       <!--Arrow-btn-->
@@ -73,24 +72,25 @@
       </label>
     </div>
   </div>
-  <div class="p-6 pt-0 flex justify-between">
+  <div class="p-6 pt-0 flex justify-end gap-4">
     <button
       class="select-none rounded-lg bg-gradient-to-tr from-red-950 to-gray-900 py-3 px-6 text-center 
       align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg
        hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       type="submit">
       Confirm
-    </button>
-    <button
+        </button>
+        <button
       class="select-none rounded-lg bg-gradient-to-tr from-red-950 to-gray-900 py-3 px-6 text-center 
       align-middle font-sans text-xs font-bold uppercase text-white shadow-md shadow-gray-900/10 transition-all hover:shadow-lg
        hover:shadow-gray-900/20 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
       @click="clearbtn">
       Clear
-    </button>
-  </div>
-</form>
-</div>
+        </button>
+        </div>
+        </form>
+      </div>
+    </div>
   </div>
 </template>
 
