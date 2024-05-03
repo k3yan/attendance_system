@@ -15,8 +15,15 @@
     </button>
     <div v-if="showTable" class="flex justify-end transform transition-transform duration-500 ease-in-out translate-x-[21rem]">
       <div class="absolute bg-gray-200 rounded-lg w-[20rem] h-[27rem]">
-        <div class="flex justify-start mt-2 ml-2">
+        <div class="flex justify-between mt-2 ml-2">
           RECENT 
+          <div>
+            <button class="bg-red-950 text-white active:bg-indigo-600 text-xs font-bold 
+            uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
+            type="button">
+              Date
+            </button>
+          </div>
         </div>
       <div class="flex justify-center mt-2 px-1 py-auto">
       <table class="border-collapse border-2 border-gray-500 absolute w-[19rem]">
