@@ -5,7 +5,7 @@
       <img src="../assets/eMyellow.png" alt="system-logo" class="h-[10rem] mb-[20rem]"/>
     </div>
     <!--Form-->
-    <div class="flex justify-center absolute">
+    <div class="flex justify-center mr-[40rem]">
       <div class="flex flex-col text-gray-700 bg-gray-200 shadow-md w-[30rem] rounded-xl bg-clip-border mt-[10rem] ml-[30rem] h-[30rem]">
     <div class="">
     <div>
@@ -14,35 +14,44 @@
       <img src="../assets/rightangle.png" alt="arrow" class="h-[1rem]" />
     </button>
     <div v-if="showTable" class="flex justify-end transform transition-transform duration-500 ease-in-out translate-x-[21rem]">
+      <!--Sideform-->
       <div class="absolute bg-gray-200 rounded-lg w-[20rem] h-[27rem]">
         <div class="flex justify-between mt-2 ml-2">
-          RECENT 
+          <div class="bg-red-950 capitalize text-white rounded-md py-1 px-2 font-bold italic">
+            RECENT 
+          </div>
           <div>
-            <button class="bg-red-950 text-white active:bg-indigo-600 text-xs font-bold 
-            uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
-            type="button">
-              Date
-            </button>
+            <!--Date Picker-->
+            <div class="w-[13rem] mr-[1rem]">
+              <VueDatePicker v-model="date" :flow="flow" placeholder="Date & Time"/>
+            </div>
           </div>
         </div>
       <div class="flex justify-center mt-2 px-1 py-auto">
-      <table class="border-collapse border-2 border-gray-500 absolute w-[19rem]">
+      <table class="border-collapse border-2 border-red-950 absolute w-[19rem]">
         <thead class="">
           <tr class="">
-            <th class="border border-gray-500 px-10">Student ID</th>
+            <th class="border border-red-950 px-9">Student ID</th>
           </tr>
         </thead>
         <tbody>
       <tr v-for="(row, index) in tableData" :key="index">
         <td class="px-4 py-2 flex justify-between">{{ row.value }}
-          <div class="flex gap-2">
-            <button class="bg-red-950 text-white rounded-md w-auto px-1">
+           <!--Action btn-->
+           <div class="gap-2">
+            <div class="flex justify-end">
+            <button  class="bg-red-950 text-white active:bg-indigo-600 text-xs font-bold 
+            uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
+            type="button">
             View
             </button>
-            <button class="bg-red-950 text-white rounded-md w-auto px-1" @click="delbtn(index)">
+            <button  class="bg-red-950 text-white active:bg-indigo-600 text-xs font-bold 
+            uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
+            type="button" @click="delbtn(index)">
             Del
             </button>
             </div>
+          </div>
         </td>
       </tr>
       </tbody>
@@ -102,12 +111,20 @@
 </template>
 
 <script>
+import { ref } from 'vue';
+
+const date = ref();
+const flow = ref(['month', 'year', 'calendar']);
+
 export default {
 data() {
+  const date = ref();
     return {
       showTable: false,
       inputValue: '',
       tableData: [],
+      date,
+      flow
     }
   },
   methods: {
