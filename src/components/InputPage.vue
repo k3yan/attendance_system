@@ -2,7 +2,7 @@
   <div class="w-full h-[100vh]">
     <!--Logo-->
     <div class="flex absolute">
-      <img src="../assets/eMyellow.png" alt="system-logo" class="h-[10rem] mb-[20rem]"/>
+      <img src="../assets/eMyellow.png" alt="system-logo" class="h-[10rem] mb-[20rem] ml-[10rem]"/>
     </div>
     <!--Form-->
     <div class="flex justify-center mr-[40rem]">
@@ -34,18 +34,19 @@
             <th class="border border-red-950 px-9">Student ID</th>
           </tr>
         </thead>
-        <tbody>
-      <tr v-for="(row, index) in tableData" :key="index">
+        <!--table body-->
+        <tbody class="overflow-y-scroll w-full flex flex-col justify-between h-[21rem]">
+        <tr v-for="(row, index) in tableData" :key="index">
         <td class="px-4 py-2 flex justify-between">{{ row.value }}
            <!--Action btn-->
            <div class="gap-2">
             <div class="flex justify-end">
-            <button  class="bg-red-950 text-white active:bg-indigo-600 text-xs font-bold 
+            <button  class="bg-red-950 text-white active:bg-yellow-600 text-xs font-bold 
             uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
             type="button">
-            View
+            <router-link to="/userprofile">View</router-link>
             </button>
-            <button  class="bg-red-950 text-white active:bg-indigo-600 text-xs font-bold 
+            <button  class="bg-red-950 text-white active:bg-yellow-600 text-xs font-bold 
             uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150" 
             type="button" @click="delbtn(index)">
             Del

@@ -1,11 +1,11 @@
 import {createRouter, createWebHistory } from 'vue-router';
-
+import userProfile from '../view/userProfile.vue';
 
 const routes = [
     {
-        path: '',
-        name: '',
-   
+        path: '/userprofile',
+        name: 'userprofile',
+        component:userProfile
     },
 ]
 
